@@ -32,12 +32,14 @@ int main()
                     vector<bet_data> betting_data = bet_data::from_buffer_to_list(buffer.c_str());
                     parsing_csv csv_parser = parsing_csv({ "web_site", "date", "match", "one", "ics", "two",
                         "gol", "over", "under" }, betting_data);
-                    // writing of an HTTP header that terminates with an optional data chunk --> doc["key"] is an object converted with a getter function
-                    // res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(doc[1]["web_site"].GetString());
+                    auto filename = csv_parser.save_into_file();
+                    // writing of an HTTP header
+                    res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(filename.c_str());
                 }
             });
-            res->onAborted([]() {
+            res->onAborted([res]() {
                 perror("Error!");
+                res->writeHeader("Content-Type", "text/html; charset=utf-8")->writeStatus("400 Bad Request")->end();
                 });
         }).listen(3000, [](auto* listen_socket)
             {

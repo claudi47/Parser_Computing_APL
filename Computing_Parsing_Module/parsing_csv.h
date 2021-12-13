@@ -15,6 +15,6 @@ public:
 	parsing_csv(vector<string> header) : header_csv(header) {}
 	parsing_csv(vector<string> header, vector<bet_data> rows) : header_csv(header), row_list(rows) {}
 	
-	const char* save_into_file();
+	string save_into_file();
 };
 
