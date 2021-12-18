@@ -24,12 +24,18 @@
     <ClCompile Include="parsing_csv.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="MongoDB.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bet_data.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="parsing_csv.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="MongoDB.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
