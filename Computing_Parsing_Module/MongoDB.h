@@ -1,16 +1,18 @@
 #pragma once
 #include <mongocxx/client.hpp>
 #include <mongocxx/instance.hpp>
+#include <cstdlib>
+#include <format>
 
 
-class MongoDB
+struct MongoDB
 {
-	mongocxx::instance inst{};
-	mongocxx::client conn{
+	static inline mongocxx::instance inst{};
+	static inline mongocxx::client conn{
 		mongocxx::uri{
-	  "mongodb+srv://claudi47:Abcd1900@@apldb.hhz9g.mongodb.net/db_apl?retryWrites=true&w=majority"
+			std::format("mongodb+srv://claudi47:{}@apldb.hhz9g.mongodb.net/db_apl?retryWrites=true&w=majority", getenv("mongodb_Password"))
 		}
 	};
-	mongocxx::database db = conn["db_apl"];
+	static inline mongocxx::database db = conn["db_apl"];
 };
 
